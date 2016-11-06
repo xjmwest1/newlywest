@@ -1,0 +1,129 @@
+<style>
+  md-tabs-canvas {
+    display: none;
+  }
+</style>
+
+<md-content layout-padding ng-controller="rsvp.controller as vm">
+  <md-card>
+    <md-card-content>
+      <md-tabs md-dynamic-height md-selected="vm.rsvpFormPage">
+        <md-tab label="one">
+          
+          <div style="padding-bottom:20px">
+            <h1 class="md-headline">RSVP</h1>
+            <p class="md-subhead">First let's get your name</p>
+          </div>
+
+          <form name="nameForm" novalidate>
+
+            <div layout-gt-xs="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>First name</label>
+                <input ng-model="vm.rsvp.first" ng-model-options='{ debounce: 1000 }' ng-change='vm.checkRsvp()' required>
+              </md-input-container>
+            </div>
+
+            <div layout-gt-xs="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Last name</label>
+                <input ng-model="vm.rsvp.last" ng-model-options='{ debounce: 1000 }' ng-change='vm.checkRsvp()' required>
+              </md-input-container>
+            </div>
+
+            <div layout-gt-xs="row">
+              <md-progress-circular ng-show="vm.checkingForRsvp" md-mode="indeterminate"></md-progress-circular>
+              <md-button ng-click="vm.rsvpFormPage = 1" ng-show="!vm.checkingForRsvp" ng-disabled="vm.alreadyRsvp || !nameForm.$valid" class="md-raised md-primary">Continue</md-button>
+              <md-button ng-show="!vm.checkingForRsvp && vm.alreadyRsvp" ng-disabled="true" class="md-primary">You've already RSVP!</md-button>
+
+            </div>
+
+          </form>
+        </md-tab>
+
+        <md-tab label="two">
+          <form name="rsvpForm" novalidate>
+
+            <div layout="row">
+                <div flex="grow" class="md-headline" style="-webkit-margin-before:0.67em; -webkit-margin-start:0px; -webkit-margin-end:0px;">RSVP</div>
+                <md-button flex="noshrink" ng-click="vm.rsvpFormPage = 0" class="md-raised">Back</md-button>
+            </div>
+
+            <div layout="row">
+              <p class="md-subhead">And now just a little more information</p>
+            </div>
+
+            <div layout-gt-xs="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Name</label>
+                <input value="{{vm.rsvp.first}} {{vm.rsvp.last}}" disabled>
+              </md-input-container>
+            </div>
+
+            <div layout-gt-xs="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Email</label>
+                <input name="email" ng-model="vm.rsvp.email" ng-pattern="/^.+@.+\..+$/" required>
+                <div ng-messages="rsvpForm.email.$error" role="alert">
+                  <div ng-message="pattern">That doesn't look like an email address.</div>
+                </div>
+              </md-input-container>
+            </div>
+
+            <div layout-gt-xs="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Phone Number</label>
+                <input name="phone" ng-model="vm.rsvp.phone" ng-pattern="/^\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{4})$/" required>
+                <div ng-messages="rsvpForm.phone.$error" role="alert">
+                  <div ng-message="pattern">That doesn't look like a phone number.</div>
+                </div>
+              </md-input-container>
+            </div>
+
+            <div layout-gt-xs="row">
+              <div layout style="padding-right:20px;">
+                <span class="md-body-1">How many others are you bringing along?</span>
+              </div>
+            </div>
+            <div layout="row" layout-align="start center" style="margin-right:10px;">
+              <md-input-container flex="nogrow" style="max-width:50px; padding-right:20px; margin-bottom:0">
+                <input style="text-align:center;" type="number" min="0" max="4" ng-model="vm.numguests" ng-change="vm.changeGuests()">
+              </md-input-container>
+              <md-slider flex step="1" min="0" max="4" ng-model="vm.numguests" ng-change="vm.changeGuests()"></md-slider>
+            </div>
+
+            <div ng-repeat="guest in vm.rsvp.guests track by $index" layout-gt-xs="row">
+              <div layout-gt-xs="row">
+                <p class="md-subhead" style="position:relative; top:10px; padding: 0 35px 15px 0;">Guest {{$index+1}}</p>
+
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>First name</label>
+                  <input ng-model="guest.first" required>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Last name</label>
+                  <input ng-model="guest.last" required>
+                </md-input-container>
+              </div>
+            </div>
+
+            <div layout-gt-xs="row">
+              <md-button ng-click="vm.submitRsvp()" ng-disabled="!rsvpForm.$valid" class="md-raised md-primary">RSVP</md-button>
+            </div>
+          </form>
+        </md-tab>
+
+        <md-tab label="three">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">Thanks for the RSVP</span>
+              <span class="md-subhead">We look forward to seeing you there!</span>
+            </md-card-title-text>
+          </md-card-title>
+        </md-tab>
+      </md-tabs>
+      
+    </md-card-content>
+  </md-card>  
+</md-content>

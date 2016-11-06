@@ -1,0 +1,87 @@
+<style>
+
+  .bridesmaidsSlide > div {
+    vertical-align: top;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .bridesmaidsSlide > div > * {
+    
+  }
+  
+  .bridesmaidsSlide .imageContainer {
+    vertical-align: top;
+    text-align: center;
+    padding-top: 50px;
+    padding-left: 0;
+    width: 100%;
+    height: 60%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .bridesmaidsSlide .textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+  }
+  
+  .bridesmaidsSlide .imageContainer > img {
+    max-width: 90%;
+    max-height: 90%;
+  }
+  
+  .bridesmaidsSlide .name {
+    font-size: 5em;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .bridesmaidsSlide .description {
+    font-size: 2em;
+    width: 100%;
+    text-align: center;
+  }
+
+  @media only screen and (min-width: 900px) {
+    .bridesmaidsSlide > div {
+      vertical-align: middle;
+      flex-direction: row-reverse;
+    }
+    
+    .bridesmaidsSlide .imageContainer {
+      vertical-align: middle;
+      text-align: left;
+      padding-top: 0;
+      padding-left: 70px;
+      width: 50%;
+      height: auto;
+    }
+
+    .bridesmaidsSlide .imageContainer > img {
+      max-height: 80%;
+      max-width: 80%;
+    }
+    
+  }
+  
+  
+  
+</style>
+
+<div ng-controller="bridesmaids.controller as vm">
+  <div class="slide bridesmaidsSlide" ng-repeat="girl in vm.girls" >
+    <div class="imageContainer">
+      <img ng-src="{{girl.pic}}">
+    </div>
+    <div class="textContainer">
+      <div class="name">{{girl.name}}</div>
+      <div class="description">{{girl.description}}</div>
+    </div>
+          
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<html ng-app="app">
+  
+  <head>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="lib/jquery.fullPage.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+	
+	<style>
+		.section {
+			width: 100%;
+		}
+	</style>
+  </head>
+  
+  <div ng-controller="app.controller as vm">
+    
+    <div full-page options="vm.fullPageOptions">
+      <div ng-repeat="anchor in vm.anchors" class="section" ng-include="anchor.link" onload="vm.anchorLoaded(anchor)" data-anchor="{{anchor.name + 'Anchor'}}" ng-cloak></div>
+    </div>
+
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="lib/jquery.fullPage.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.js"></script>
+  <script src="lib/angular-fullpage.js"></script>
+  
+
+  <script src="app.module.js"></script>
+  <script src="app.routing.service.js"></script>
+  <script src="app.routes.js"></script>
+  <script src="app.controller.js"></script>
+  
+  <script src="registry/registry.controller.js"></script>
+  <script src="rsvp/rsvp.controller.js"></script>
+  <script src="groomsmen/groomsmen.controller.js"></script>
+  <script src="bridesmaids/bridesmaids.controller.js"></script>
+  <script src="party/party.controller.js"></script>
+  <script src="travel/travel.controller.js"></script>
+  
+</html>
+
+
+
+

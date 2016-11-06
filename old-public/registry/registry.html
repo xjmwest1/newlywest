@@ -1,0 +1,23 @@
+<md-content layout-padding ng-controller="registry.controller as vm">
+
+  <md-card>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Registry</span>
+        <span class="md-subhead">Anything you can give would be greatly appreciated!</span>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+      <md-list flex>
+        <md-list-item class="md-3-line" ng-repeat="item in vm.registries" ng-href="{{item.link}}" target="_blank">
+          <img ng-src="{{item.image}}" class="md-avatar" />
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.link }}</p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-card-content>
+  </md-card>
+
+</md-content>

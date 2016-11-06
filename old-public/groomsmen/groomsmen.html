@@ -1,0 +1,77 @@
+<style>
+
+  .groomsmenSlide > div {
+    vertical-align: top;
+  }
+  
+  .groomsmenSlide > div > * {
+    display: block;
+  }
+  
+  .groomsmenSlide .imageContainer {
+    vertical-align: top;
+    text-align: center;
+    padding-top: 50px;
+    padding-left: 0;
+    width: 100%;
+    height: 60%;
+  }
+  
+  .groomsmenSlide .imageContainer > img {
+    max-width: 90%;
+    max-height: 90%;
+  }
+  
+  .groomsmenSlide .name {
+    font-size: 5em;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .groomsmenSlide .description {
+    font-size: 2em;
+    width: 100%;
+    text-align: center;
+  }
+
+  @media only screen and (min-width: 900px) {
+    .groomsmenSlide > div {
+      vertical-align: middle;
+    }
+    
+    .groomsmenSlide > div > * {
+      display: inline-block;
+    }
+    
+    .groomsmenSlide .imageContainer {
+      vertical-align: middle;
+      text-align: left;
+      padding-top: 0;
+      padding-left: 70px;
+      width: 50%;
+      height: auto;
+    }
+
+    .groomsmenSlide .imageContainer > img {
+      max-height: 80%;
+      max-width: 80%;
+    }
+    
+  }
+  
+  
+  
+</style>
+
+<div ng-controller="groomsmen.controller as vm">
+  <div class="slide groomsmenSlide" ng-repeat="dude in vm.dudes" >
+    <div class="imageContainer">
+      <img ng-src="{{dude.pic}}">
+    </div>
+    <div class="textContainer">
+      <div class="name">{{dude.name}}</div>
+      <div class="description">{{dude.description}}</div>
+    </div>
+          
+  </div>
+</div>
