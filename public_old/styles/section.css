@@ -1,0 +1,296 @@
+
+body {
+	margin: 0;
+	margin-top: 130px;
+	width: 100%;
+	max-width: 1960px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+
+section {
+	display: table;
+	width: 100%;
+	position: relative;
+	margin-top: 50px;
+}
+
+.sectionContent {
+	position: relative;
+	width: calc(100% - 60px);
+	max-width: 1200px;
+	margin: 0 auto;
+    padding: 0 5px;
+}
+
+.sectionTitle {
+	font-family: Oswald;
+	font-size: 3.6em;
+	text-transform: uppercase;
+}
+
+.giantSectionTitle {
+	font-family: Oswald;
+	font-size: 7em;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.tinyTitle {
+	font-size: .5em;
+	vertical-align: middle;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+.sectionSubtitle {
+	font-family: Oswald;
+	font-size: 2.2em;
+	text-transform: uppercase;
+}
+
+.textTitle {
+	font-family: Oswald;
+	font-size: 2em;
+	margin-bottom: 25px;
+	text-transform: uppercase;
+}
+
+.sectionSubtitlefancy {
+	font-family: 'Great Vibes', cursive;
+	font-size: 2.8em;
+	text-transform: uppercase;
+	text-transform: capitalize;
+}
+
+.textSubtitle {
+	font-family: Open Sans, "Open Sans Light" , sans-serif;
+	margin-left: 10px;, 
+	font-size: 1.5em;
+	text-transform: uppercase;
+}
+
+.text {
+	font-family: Open Sans, "Open Sans Light" , sans-serif;
+	font-size: 1.2em;
+	margin-bottom: 45px;
+	line-height: 1.5em;
+	
+}
+
+.textquote {
+	font-family: "OSWALD";
+	text-transform: uppercase;
+	display: inline-block;
+	border: 8px solid #000080; 
+	padding: 35px; 
+	margin: 0 auto;">
+	font-size: 6.0em;
+	margin-bottom: 45px;
+	background-color:mintcream;
+}
+
+#coverSection {
+	background-image: url(../images/ocean_bg.jpg);
+    background-size: 100%;
+}
+
+#ceremony {
+	margin-top: 80px;
+	padding-bottom:0; 
+	margin-bottom: 40px; 
+	height: 600px; 
+	background-image: url(../images/pineapplepattern.jpg);
+}
+
+#couple {
+	padding-top: 25px;
+	margin-top: 25px;
+}
+
+#mapIconContainer {
+    width: 80px;
+	margin: 0 auto; 
+	padding: 10px;
+	border-radius: 10px;
+}
+
+#mapIconContainer > a > div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#mapIconContainer:hover {
+	background-color: rgba(255,255,255,.5);
+}
+
+.bioContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.bio {
+	width: 46%;
+	margin: 1% 0 1% 3%
+}
+
+.bio img {
+	margin: 0 auto;
+    width: 20%;
+    padding-right: 15px;
+    padding-bottom: 5px;
+	border-radius: 50%;
+}
+
+.bio > .text {
+	background-color: mintcream;
+	padding: 15px;
+	border-radius: 25px
+
+}
+
+.scheduleContainer {
+    padding: 15px;
+    border-radius: 25px;
+    max-width: 600px;
+    margin: 0 auto;
+	font-size: 1.3em;
+}
+
+.scheduleLine {
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	min-height: 40px;
+}
+
+.scheduleLineItem {
+	display:inline-block; 
+	width: 45%;
+}
+
+.registryContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.registryItem {
+	width: 35%;
+	height: 250px; 
+	position: relative;
+	border-radius: 10px;
+}
+
+.registryItem > *{
+	border-radius: 10px;
+}
+
+.registryItem:hover > * {
+	background-color: rgba(0, 0, 0, .2);
+}
+
+#amazonBg {
+	background-image: url(../images/amazonbg.png);
+}
+
+#targetBg {
+	background-image: url(../images/targetbg.png);
+}
+
+.fullwidthBg {
+	background-position: center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.fullwidthBg > * {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.fullwidthBg > .sectionWithText {
+	position: relative;
+}
+
+#mapIconContainer {
+	padding-top: 15px;
+}
+
+@media screen and (max-width: 960px) {
+	#coverSection {
+		background-size: cover;
+	}
+	
+	.giantSectionTitle {
+		top: 215px !important;
+    	font-size: 3.8em;
+	}
+	
+	#coverSection {
+		margin-top: 85px !important;
+	}
+	
+	.bio {
+		width: 100%;
+		margin: 2%;
+	}
+	
+	.bio img {
+		display: block;
+		margin: 0;
+		width: 40%;
+	}
+	
+	.bio .textSubtitle {
+		margin-left: 0;
+		margin-bottom: 10px;
+	}
+	
+	.bio > .text {
+		background-color: transparent;
+		padding: 0;
+	}
+	
+	.scheduleContainer {
+		background-color: transparent;
+		padding: 0;
+		max-width: none;
+	}
+	
+	.scheduleLine {
+		width: 95%; 
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		min-height: 65px;
+	}
+	
+	
+	
+	#ceremony {
+		margin-top: 20px;
+		height: 100vh;
+	}
+	
+	.registryContainer {
+		flex-direction: column;
+	}
+	
+	.registryItem {
+		width: 100%;
+		height: 200px; 
+		position: relative;
+		margin-bottom: 25px;
+	}
+
+}

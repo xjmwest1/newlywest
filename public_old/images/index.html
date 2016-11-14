@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/nav.css" />
+	<link rel="stylesheet" href="styles/section.css" />
+	<link rel="stylesheet" href="styles/form.css" />
+	<link rel="stylesheet" href="styles/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:light, lightitalic" />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald" />
+	<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+</head>
+<body>
+	<div id="fb-root"></div>
+	<nav>
+		<div id="navMargin">
+			<div id="logoContainer">
+				<img id="logo" src="images/logo.jpg">
+			</div>
+			<div id="menuContainer">
+				<ul id="menu">
+					<li><a onclick="scrollTo('#couple')">Couple</a></li>
+					<li><a onclick="scrollTo('#weddingparty')">Wedding Party</a></li>
+					<li><a onclick="scrollTo('#ceremony')">Ceremony</a></li>
+					<li><a onclick="scrollTo('#accommodations')">Accommodations</a></li>
+					<li><a onclick="scrollTo('#registry')">Registry</a></li>
+					<li><a onclick="scrollTo('#guestbook')">Guestbook</a></li>
+					<li><a onclick="closeMobileMenu(); resetForm();" data-toggle="modal" data-target="#rsvpModal">RSVP</a></li>
+				</ul>
+			</div>
+			<div id="countdownContainer">
+				<div id="countText">
+					<span id="days" class="countValue">5</span>
+					<span class="countLabel">d</span>
+					<span id="hours" class="countValue">13</span>
+					<span class="countLabel">h</span>
+					<span id="minutes" class="countValue">2</span>
+					<span class="countLabel">m</span>
+					<span id="seconds" class="countValue">55</span>
+					<span class="countLabel">s</span>
+				</div>
+			</div>
+			<div id="mobileMenuButton">
+				<div id="nav-icon3">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+	</nav>
+	
+	<div id="mobileMenuContainer">
+		<ul id="mobileMenu">
+			<li><a onclick="scrollTo('#couple')">Couple</a></li>
+			<li><a onclick="scrollTo('#weddingparty')">Wedding Party</a></li>
+			<li><a onclick="scrollTo('#ceremony')">Ceremony</a></li>
+			<li><a onclick="scrollTo('#accommodations')">Accommodations</a></li>
+			<li><a onclick="scrollTo('#registry')">Registry</a></li>
+			<li><a onclick="scrollTo('#guestbook')">Guestbook</a></li>
+			<li><a onclick="closeMobileMenu(); resetForm();" data-toggle="modal" data-target="#rsvpModal">RSVP</a></li>
+		</ul>
+	</div>
+	
+	<div class="modal" id="rsvpModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">RSVP</h4>
+				</div>
+				<div class="modal-body">
+					<form id="nameForm">
+						<div id="rsvpNameGroup" class="form-group">
+							<label for="rsvpName">Your Name</label>
+							<input type="text" class="form-control" id="rsvpName" placeholder="John Doe">
+							<div class="form-control-feedback"></div>
+						</div>
+						<div class="form-group" style="text-align:center">
+							<div id="alreadyRsvp" style="display:none">You've already submitted your RSVP. To edit your response press continue</div>
+						</div>
+					</form>
+					<form id="detailsForm" style="display:none">						
+						<div class="form-group">
+							<label>Can you make it?</label>
+							<div class="btn-group btn-group-justified" data-toggle="buttons">
+								<label id="rsvpAccept" class="btn btn-secondary" style="width:50%">
+									<input type="radio" name="options" onchange="rsvpAccept()" autocomplete="off" checked> Accept
+								</label>
+								<label id="rsvpReject" class="btn btn-secondary" style="width:50%">
+									<input type="radio" name="options" onchange="rsvpReject()" autocomplete="off"> Regret
+								</label>
+							</div>
+						</div>
+						
+						<div class="form-group" style="text-align:center">
+							<div id="acceptReject"></div>
+						</div>
+						
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button id="rsvpContinue" type="button" class="btn btn-primary" disabled onclick="showDetailsForm()">Continue</button>
+					<button id="rsvpBack" type="button" class="btn btn-secondary" style="display:none" onclick="rsvpBack()">Back</button>
+					<button id="rsvpSubmit" type="button" class="btn btn-primary" style="display:none" disabled onclick="submitRsvp()">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<section id="coverSection" class="fullwidthBg" style="height: 600px; margin-top: 10px;">
+		<div>
+			<div class="giantSectionTitle" style="position: absolute; top: 140px; text-align: center; width: 100%; color: white; white-space: nowrap; overflow-x: hidden;">
+				JOHN <span class="tinyTitle" style="position: relative; top: -10px;">AND</span> JESS 
+			</div>
+			<div class="sectionTitle" style="position: absolute; top: 320px; text-align: center; width: 100%; color: white;"
+				>  05.13.17
+			</div>
+			
+			<div class="sectionSubtitle" style="position: absolute; top: 470px; text-align: center; width: 100%; color: white;">  #NEWLYWESTS17
+			</div>
+			<div class="sectionSubtitlefancy" style="position: absolute; top: 400px; text-align: center; width: 100%; color: white;"> Pine Knoll Shores, N.C.
+			</div>
+		</div>
+	</section>
+	
+	<section id="couple">
+		<div class="sectionContent">
+			<img src="images/couple.jpg" style="float:left; height: 500px; max-width: 100%; border-radius: 25px; margin-bottom: 25px; margin-right: 35px;">
+			<div class="sectionSubtitlefancy" style="color: #8EFAE3;" >You Had Me at Aloha</div>
+			<div class="text">
+				On Friday, June 6th, 2013 John and Jess met through a friend (should out to Shelbs!) one night in Raleigh. It was
+				by random chance that they ended up meeting (neither of them knew where they were going). But Jess kicked John's ass
+				in rummy and then because he was the only one still awake treated him to a one-sided discussion of her political views
+				until 6:30am. When John finally couldn't keep up anymore (he had no idea what he was in store for) he asked for Jess's
+				number and they talked everyday since.
+			</div>
+			<div class="sectionSubtitlefancy" style="color: #8EFAE3;">We Meremaid For Each Other </div>
+			<div class="text">
+				Two people couldn't be more opposite. Where John is practical, Jess is an adventurer/impulsive. In each other, we have
+				found a balance that we didn't know our lives' had been missing. Literally, a balance. John balances the checkbook while
+				Jess balances John's comfort zone level. He now has gray hairs to prove it!
+			</div>
+			<br><br><br>
+			<BR><BR><BR>
+			<div class="textquote" style="position: absolute; bottom: 2px; text-align: center; width: 100%; color #000080;" >
+					We are excited to start our lives together and can't wait for you to celebrate with us!
+				</div>
+				
+	</section>
+	
+	<section id="weddingparty">
+		<div class="sectionContent">
+			<div class="sectionTitle" style="margin-bottom: 20px">
+				BRIDESMAIDS
+			</div>
+			<div class="bioContainer">
+			
+				<div class="bio">
+					<img src="images/kellie.jpg" />
+					<div class="textTitle" style="display:inline-block; margin-bottom: 5px;"><span>Kellie Daughtry</span></div>
+					<div class="textSubtitle" style="display:inline-block; margin-bottom: 20px"> Maid of Honor</div>
+					<div class="text">
+						My roommate in college and bff kellie jellie is one of my all time favorite people. Sharing a hall with her at Sunchase was the best thing that happened to me in college. She is always down to grab a beer or hang out in the living room and Netflix all day. Lover of canceled plans and reggae music, she knows how to keep it mellow. Don’t let that glamour shot fool you. We were on the moving walkways in the airport and had no idea you were actually supposed to walk on them till granny zoomed on past with her walker. Kellie is the practical one in our friendship. She brings me back down to earth when I get some crazy idea. We talk almost everyday and I can't imagine complaining/gossiping about life to anyone else. Kellie, thanks for agreeing to be my maid of honor. Princess Jess might show up, but I promise I won’t sit down on the floor and cry this time (I think). 
+					</div>
+				</div>
+			
+				<div class="bio">
+					<img src="images/kellie.jpg" />
+					<div class="textTitle" style="display:inline-block; margin-bottom: 5px;">ALLY STEPHENSON</div>
+					<div class="textSubtitle" style="display:inline-block; margin-bottom: 20px">Maid of Honor</div>
+					<div class="text">My oldest friend and the best time I know. 18 years ago, the first thing she ever said to me was “You are going to grow up to be a nerd!” Secretly, I think she stuck around just to prove she was right. Truthfully, our shared competitive spirit and spirit for adventure is what made us fast friends.  We played many different sports, dared each other to run through waist high ditches, drove our jet skis really fast, canoed and sank in the tar river, and we may have even picked a few fights with other people(sorry mom). Let’s just say there never was a dull moment growing up with Ally. Lover of the beach, sports, and all things fun she is most likely to challenge you to a wedding drinking contest.  Ally has been with me for every important event in my life. I can’t imagine this day without her. Besides I don’t know anyone else that will help me tailgate my own wedding.
+ 
+					</div>
+				</div>
+				
+				<div class="bio">
+					<img src="images/kellie.jpg" />
+					<div class="textTitle" style="display:inline-block; margin-bottom: 5px;">KATIE MOORE</div>
+					<div class="textSubtitle" style="display:inline-block; margin-bottom: 20px">Bridesmaid</div>
+					<div class="text">
+						Cousin aka baby sister. Growing up, Katie and I spent a lot of time together at our grandparents house. On multiple occasions, Katie and I dressed up in Grandma’s aprons and Laurie's hats and performed some dance/singing routine I coordinated and charged my grandparents money to watch. If you have ever heard me sing or seen the home video of my one year that I took dance classes, you would call her a saint. Katie is a gentle, sweet soul that I love very dearly. I’m so excited to have her share my day in May and then help her share hers in June.
+					</div>
+				</div>
+				
+				<div class="bio">
+					<img src="images/kellie.jpg" />
+					<div class="textTitle" style="display:inline-block; margin-bottom: 5px;">KRISSY FRANKS</div>
+					<div class="textSubtitle" style="display:inline-block; margin-bottom: 20px">Bridesmaid</div>
+					<div class="text">
+						My get crunk sister and a truly kind soul. Our friendship started out a little rocky after Krissy hit me when she was pitching because she thought I liked her boyfriend. Ahh middle school. Good Times. In high school, we became fast friends when we joined the same travel softball team. We spent most of our spring, summer, and fall weekends together out on the ball field. Occasionally, we would find time before practice to ride around RM blaring Lil John. What can I say? We were 16 and badass. Krissy truly is one of the sweetest people I know. When we were co-captains of our softball team senior year, she always had a kind word to say to our teammates after I finished fussing. I am thankful to have a friend like her to stand tall by my side at the altar and then get low with me at the reception.
+					</div>
+				</div>
+				
+				<div class="bio">
+					<img src="images/kellie.jpg" />
+					<div class="textTitle" style="display:inline-block; margin-bottom: 5px;">SHELBY EHMANN</div>
+					
+					<div class="textSubtitle" style="display:inline-block; margin-bottom: 20px">Bridesmaid</div>
+					<div class="text">
+						College Roommate/Ride or Die. Shelby is always up to try something new and keeps life fun! Thanks for always holding it down with me in the 201. I know initial impressions of me were ify with my themed FB profile picture, but I'm glad you guys choose me to be your rando roomie. I seriously can't imagine having a better time in college than I did with you and Keaze. After all, there aren't that many friends that will drop everything they are doing to help you fight your neighbors because they stole your wreath. Damn you Jarren. There also aren't that many people who will come home from going out and help you cook fried jalapeños. We are in the south, fried food is the foundation of a true friendship. I'm so excited for you to help us celebrate!
+					</div>
+				</div>
+				
+				<div class="bio">
+					<img src="images/kellie.jpg" />
+					<div class="textTitle" style="display:inline-block; margin-bottom: 5px;">TORI WELTY</div>
+					<div class="textSubtitle" style="display:inline-block; margin-bottom: 20px">Bridesmaid</div>
+					<div class="text">
+						I have labeled her my beer and puppies friend. Why? Because she is always down for a local craft beer and to go somewhere we can bring all of our dogs! Tori is very creative and stands out as a female mechanical engineer. Girl Power!  I am so thankful to have met her after moving to Charlotte. She became my female support system in a place where I did not know anyone. Tori dates one of John's closest friends so we often have dinner nights. Let me tell you, Tori can cook one hell of a good meal. She is the real hostess with the mostest. I will be forever grateful that you introduced me to hot pepper jelly and goat cheese crackers. I can’t wait to make some fun wedding memories with you!
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</section>
+	
+	<section>
+		<div class="sectionContent">
+			<div class="sectionTitle" style="margin-bottom: 20px">
+				Groomsmen
+			</div>
+			<div class="bioContainer">
+			
+				<div class="bio">
+					<img src="images/chris.jpg" />
+					<div class="textTitle" style="display:inline-block; margin-bottom: 5px;"><span>CHRIS WEST</span></div>
+					<div class="textSubtitle" style="display:inline-block; margin-bottom: 20px">Best Man</div>
+					<div class="text">
+						I'd like to think my brother looks up to me (even through I literally look up to him). We used
+						to fight and never get along but after some growing up I'd say we're pretty close. Even if this 
+						isn't true with him, too bad - you're still related to me! This guy lives in Pennsylvania and
+						enjoys wood-working, working out and all things dogs.
+					</div>
+				</div>
+			
+				<div class="bio">
+					<img src="images/nate.jpg" />
+					<div class="textTitle" style="display:inline-block; margin-bottom: 5px;">NATE MOYAR</div>
+					<div class="textSubtitle" style="display:inline-block; margin-bottom: 20px">Groomsman</div>
+					<div class="text">
+						My first friend since we were two. Even though his family moved away, our families always made 
+						it a point to see each other annually. Nate is the most easy-going and friendliest guy you'll 
+						meet. But watch out, he is a beast. He swam in college and has done several triathlons. I heard
+						he pays rent at the gym as well.
+					</div>
+				</div>
+				
+				<div class="bio">
+					<img src="images/zack.jpg" />
+					<div class="textTitle" style="display:inline-block; margin-bottom: 5px;">ZACK ANDREWS</div>
+					<div class="textSubtitle" style="display:inline-block; margin-bottom: 20px">Groomsman</div>
+					<div class="text">
+						I met this guy on the first day of cross country freshmen year in high school. We got into a
+						bunch of trouble being idiots when we thought we were cool. From doing donuts in the parking
+						lot to drinking his parent's liquor we managed to survive high scool. Somehow we had the same
+						first car (98 Saturn SL2) and both went to UNC Charlotte.
+					</div>
+				</div>
+				
+				<div class="bio">
+					<img src="images/jp.jpg" />
+					<div class="textTitle" style="display:inline-block; margin-bottom: 5px;">JONATHAN PAULL</div>
+					<div class="textSubtitle" style="display:inline-block; margin-bottom: 20px">Groomsman</div>
+					<div class="text">
+						My first time meeting JP was after I was initiated to ZBT- he handed me a flask of the 
+						cheapest whiskey you could buy and said "drink up pledge". He is the guy that you can call
+						up anytime asking if you want to grab a beer and he will always be down. Don't worry though,
+						he's not very good at case races.
+					</div>
+				</div>
+				
+				<div class="bio">
+					<img src="images/benji.jpg" />
+					<div class="textTitle" style="display:inline-block; margin-bottom: 5px;">BENJAMIN DOUGLAS</div>
+					<div class="textSubtitle" style="display:inline-block; margin-bottom: 20px">Groomsman</div>
+					<div class="text">
+						Benji is my big brother in ZBT. He helped me when I first joined the fraternity and really
+						inspired me to step up as a leader. He taught me a lot about respect and how to not give a
+						shit what others think about you. Just watch out when he drinks, he'll take your stuff and
+						wait to give it back years later.
+					</div>
+				</div>
+				
+				<div class="bio">
+					<img src="images/luke2.jpg" />
+					<div class="textTitle" style="display:inline-block; margin-bottom: 5px;">LUKE HATLEY</div>
+					<div class="textSubtitle" style="display:inline-block; margin-bottom: 20px">Groomsman</div>
+					<div class="text">
+						My roommate and running buddy for the majority of college. He taught me how to lose at
+						poker and what redneck parties are like. Luke is really a smart guy but he hides it well.
+						Thanks for letting me drive your car to class and not flooding our apartment too many times.
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</section>
+	
+	<section id="ceremony" class="fullwidthBg">
+		<div>
+			<div class="sectionSubtitle" style="position: absolute; top: 50%; left:5%; right:5%; transform: translateY(-50%); width: 90%; text-align:center; margin-bottom: 0; color: white; font-size: 2.25em">
+				Friday, May 13th, 2017 <br>
+				5:30 PM <br>
+				Crystal Coast Country Club <br>
+				152 Oakleaf Dr <br>
+				Pine Knoll Shores, NC 28512
+				<br><br>
+				
+					<div id="mapIconContainer">
+						<a target="_blank" href="https://www.google.com/maps/place/Country+Club+Of+Crystal+Coast/@34.7037411,-76.7952664,17z/data=!3m1!4b1!4m5!3m4!1s0x89a892e5751e4e1f:0xc2117c4a69f77cc7!8m2!3d34.7037367!4d-76.7930777">
+							<div>
+								<img src="images/pointer.png" height="60">			
+							</div>
+						</a>
+					</div>
+			</div>
+		</div>
+	</section>
+	
+	<section id="schedule">
+		<div class="sectionContent">
+			<div class="scheduleContainer">
+				<div class="text" style="text-align: center">
+					<div class="textSubtitle" style="text-align: center; margin-bottom: 15px;">Friday, May 12th</div>
+					<div class="scheduleLine">
+						<div style="display:inline-block; width: 45%"> 6:00 PM </div>
+						<div style="display:inline-block; width: 45%"> Rehearsal Dinner </div>
+					</div>
+				</div>
+				<div class="text" style="text-align: center">
+					<div class="textSubtitle" style="text-align: center; margin-bottom: 15px;">Saturday, May 13th</div>
+					<div class="scheduleLine">
+						<div class="scheduleLineItem"> 5:30 PM </div>
+						<div class="scheduleLineItem"> Wedding Ceremony </div>
+					</div>
+					<div class="scheduleLine">
+						<div class="scheduleLineItem"> 6:00-7:00 PM </div>
+						<div class="scheduleLineItem"> Cocktail Hour </div>
+					</div>
+					<div class="scheduleLine">
+						<div class="scheduleLineItem"> 7:15 PM </div>
+						<div class="scheduleLineItem"> Dinner </div>
+					</div>
+					<div class="scheduleLine">
+						<div class="scheduleLineItem"> 8:00 PM </div>
+						<div class="scheduleLineItem"> Hit the Dance Floor </div>
+					</div>
+					<div class="scheduleLine">
+						<div class="scheduleLineItem"> 10:50 PM </div>
+						<div class="scheduleLineItem"> Sparkler Send Off </div>
+					</div>
+				</div>
+				<div class="text" style="text-align: center">
+					<div class="textSubtitle" style="text-align: center; margin-bottom: 15px;">Sunday, May 14th</div>
+						<div style="width: 95%; margin: 0 auto; text-align: center;">John and Jess are honeymoon-bound!</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section id="accommodations">
+		<div class="sectionContent">
+
+		</div>
+	</section>
+	
+	<section id="registry">
+		<div class="sectionContent">
+			<div class="sectionTitle" style="margin-bottom: 20px">
+				Registry
+			</div>
+			<div class="text" style="text-align:center">
+				If you'd like to get us a wedding present, please look at the following retailers. Thank for showing your generosity and any contribution
+				will help John and Jess start their lives together as husband and wife.
+			</div>
+			
+			<div class="registryContainer" style="justify-content: space-around; margin-bottom: 25px">
+				
+				<div id="amazonBg" class="fullwidthBg registryItem">
+					<a href="http://www.amazon.com" target="_blank" style="display: flex; align-items: center; justify-content: center;">
+						<img src="images/amazon.png" height="150" />
+					</a>
+				</div>
+				
+				<div id="targetBg" class="fullwidthBg registryItem">
+					<a href="http://www.target.com" target="_blank" style="display: flex; align-items: center; justify-content: center;">
+						<img src="images/target2.png" height="150" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section id="guestbook">
+		<div class="sectionContent">
+			<div class="sectionTitle" style="margin-bottom: 20px">
+				Guestbook
+			</div>
+			<div class="text" style="text-align:center">
+				Questions? Commments? Song requests? Join the conversation below!	
+			</div>
+			<div class="fb-comments" data-href="https://www.newlywests17.com" data-numposts="10"></div>
+		</div>
+	</section>
+	
+	
+	
+	<script src="lib/jquery-3.1.1.min.js"></script>
+	<script src="lib/jquery.countdown.min.js"></script>
+	<script src="lib/bootstrap.min.js"></script>
+	
+	<script>
+		// goTo(id)
+		(function($) {
+			$.fn.goTo = function() {
+				$('html, body').animate({
+					scrollTop: $(this).offset().top + 'px'
+				}, 'fast');
+				return this;
+			}
+		})(jQuery);
+		
+		// donetyping(callback, delay)
+		(function($){
+			$.fn.extend({
+				donetyping: function(callback,timeout){
+					timeout = timeout || 1e3; // 1 second default timeout
+					var timeoutReference,
+						doneTyping = function(el){
+							if (!timeoutReference) return;
+							timeoutReference = null;
+							callback.call(el);
+						};
+					return this.each(function(i,el){
+						var $el = $(el);
+						// Chrome Fix (Use keyup over keypress to detect backspace)
+						// thank you @palerdot
+						$el.is(':input') && $el.on('keyup keypress paste',function(e){
+							// This catches the backspace button in chrome, but also prevents
+							// the event from triggering too preemptively. Without this line,
+							// using tab/shift+tab will make the focused element fire the callback.
+							if (e.type=='keyup' && e.keyCode!=8) return;
+							
+							// Check if timeout has been set. If it has, "reset" the clock and
+							// start over again.
+							if (timeoutReference) clearTimeout(timeoutReference);
+							timeoutReference = setTimeout(function(){
+								// if we made it here, our timeout has elapsed. Fire the
+								// callback
+								doneTyping(el);
+							}, timeout);
+						}).on('blur',function(){
+							// If we can, fire the event since we're leaving the field
+							doneTyping(el);
+						});
+					});
+				}
+			});
+		})(jQuery);
+	</script>
+	
+	<script>	
+		// RSVP form functions
+		
+		// check name
+		$('#rsvpName').donetyping(function(){
+			$('#rsvpContinue').prop('disabled', true);
+			$('#alreadyRsvp').hide();
+		
+			var inputName = $('#rsvpName').val();
+			var splitName = inputName.split(' ') || [];
+			var validNames = true;
+			
+			if(!inputName || inputName.trim().length == 0) {
+				$('#rsvpNameGroup > .form-control-feedback').empty();
+				$('#rsvpNameGroup').removeClass('has-warning');
+				return false;
+			}
+			
+			splitName.forEach(function(name) {
+				if(!name) {
+					validNames = false;
+					return false;
+				}
+			});
+			
+			if(splitName.length != 2 || !validNames) {
+				$('#rsvpNameGroup > .form-control-feedback').text('Please enter your first and last name');
+				$('#rsvpNameGroup').addClass('has-warning');
+			}else {
+				resetDetails();
+				$('#rsvpNameGroup > .form-control-feedback').empty();
+				$('#rsvpNameGroup').removeClass('has-warning');
+				$.get('/rsvp/first/' + splitName[0].toLowerCase() + '/last/' + splitName[1].toLowerCase(), function(response){
+					//if already rsvp
+					$('#alreadyRsvp').show();
+					//else
+					console.log(response);
+					$('#rsvpContinue').prop('disabled', false);
+				}).fail(function() {
+					$('#alreadyRsvp').show();
+					console.log('whoops');
+					$('#rsvpContinue').prop('disabled', false);
+				});
+			}
+		}, 500);
+		
+		function resetForm() {
+			$('#nameForm')[0].reset();
+			$('#nameForm').show();
+			
+			$('#rsvpContinue').prop('disabled', true);
+			$('#rsvpContinue').show();
+			
+			$('#detailsForm').hide();
+			
+			$('#rsvpSubmit').hide();
+			
+			$('#rsvpBack').hide();
+			
+			$('#alreadyRsvp').hide();
+			
+			resetDetails();
+		}
+		
+		function resetDetails() {
+			$('#detailsForm')[0].reset();
+		
+			$('#rsvpSubmit').prop('disabled', true);
+		
+			$('#acceptReject').empty();
+			
+			$('#rsvpAccept').removeClass('active');
+			$('#rsvpAccept > input').prop('checked', false);
+			
+			$('#rsvpReject').removeClass('active');
+			$('#rsvpReject > input').prop('checked', false);
+		}
+		
+		function showDetailsForm() {
+			$('#nameForm').hide();
+			$('#rsvpContinue').hide();
+			$('#detailsForm').show();
+			$('#rsvpSubmit').show();
+			$('#rsvpBack').show();
+		}
+		
+		function rsvpBack() {
+			$('#nameForm').show();
+			$('#rsvpContinue').show();
+			$('#detailsForm').hide();
+			$('#rsvpSubmit').hide();
+			$('#rsvpBack').hide();
+		}
+		
+		$('#rsvpAccept').click(function() {
+			$('#acceptReject').text($('#rsvpName').val() + ' will be attending on May 13th, 2017 at 5:30 PM');
+		});
+		
+		$('#rsvpReject').click(function() {
+			$('#acceptReject').text($('#rsvpName').val() + ' will not be able to attend');
+		});
+	
+		// Facebook comment section setup
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=513496032047660";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	
+		// countdown setup
+		$('#countText').countdown('5/13/2017 17:30:00', function(event) {
+			$('#days').html(event.strftime('%-D'));
+			$('#hours').html(event.strftime('%-H'));
+			$('#minutes').html(event.strftime('%-M'));
+			$('#seconds').html(event.strftime('%-S'));
+		});
+		
+		// menu button setup
+		$(document).ready(function(){
+			$('#nav-icon3').click(function(){
+				$(this).toggleClass('open');
+				$('#mobileMenuContainer').toggleClass('open');
+				$('#mobileMenu').toggleClass('open');
+				
+				if($(this).hasClass('open')) {
+					$(document).on('click touchmove touchstart scroll', menuOpenEvent);
+					return false;
+				}
+			});
+		});
+		
+		function menuOpenEvent(event) {
+			if($(event.target).parents('#mobileMenuButton').length == 0 && $(event.target).parents('#mobileMenuContainer').length == 0) {
+				$(document).off('click touchmove touchstart scroll', menuOpenEvent);
+				closeMobileMenu();
+				
+				return $(event.target).parents('#mobileMenuButton').length == 0;
+			}
+		}
+		
+		function closeMobileMenu() {
+			$('#nav-icon3').removeClass('open');
+			$('#mobileMenuContainer').removeClass('open');
+			$('#mobileMenu').removeClass('open');
+		}
+		
+		// header should be visible on page load
+		$(document).ready(function(){
+			didScroll = false;
+		});
+		
+		// hide header on on scroll down
+		var didScroll;
+		var clickedLink;
+		var lastScrollTop = 0;
+		var delta = 5;
+		var navbarHeight = $('nav').outerHeight();
+
+		$(window).scroll(function(event){
+			didScroll = true;
+		});
+
+		setInterval(function() {
+			if (didScroll) {
+				hasScrolled();
+				didScroll = false;
+			}
+		}, 250);
+
+		function hasScrolled() {
+			var st = $(this).scrollTop();
+			
+			// Make sure they scroll more than delta
+			if(Math.abs(lastScrollTop - st) <= delta)
+				return;
+			
+			// If they scrolled down and are past the navbar, add class .nav-up.
+			// This is necessary so you never see what is "behind" the navbar.
+			if (st > lastScrollTop && st > navbarHeight){
+				// Scroll Down
+				$('nav').removeClass('nav-down').addClass('nav-up');
+			} else {
+				// Scroll Up
+				if(clickedLink) {
+					clickedLink = false;
+				}else if(st + $(window).height() < $(document).height()) {
+					$('nav').removeClass('nav-up').addClass('nav-down');
+				}
+			}
+			
+			lastScrollTop = st;
+		}
+		
+		function scrollTo(div) {
+			$(div).goTo();
+			
+			$('html, body').promise().done(function() {
+				hideNav();
+			});
+		}
+		
+		function hideNav() {
+			clickedLink = true;
+			$('nav').removeClass('nav-down').addClass('nav-up');
+		}
+	</script>
+</body>
+</html>

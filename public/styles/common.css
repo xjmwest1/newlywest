@@ -1,0 +1,45 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	overflow-x: hidden;
+}
+
+.fullPage {
+	width: 100vw;
+	height: 100vh;
+}
+
+.bannerImage {
+	width: 100vw;
+	height: 40vh;
+	margin: 20px 0;
+}
+
+.backgroundImage {
+	background-position: center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.contentContainer {
+	position: relative;
+    width: calc(100% - 60px);
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 0 5px;
+	
+	font-family: Open Sans, "Open Sans Light" , sans-serif;
+    font-size: 1.2em;
+    line-height: 1.5em;
+}
+
+.verticalCenter {
+	position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
