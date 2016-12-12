@@ -434,12 +434,17 @@
         width: 100%;
     }
     
-    #amazonBg {
+    #amazonBg, #hiltonBg {
         margin-bottom: 15px;
     }
     
-    #targetBg {
+    #targetBg, #doubleTreeBg {
         margin-top: 15px;
+    }
+    
+    #hiltonBg > a, #doubleTreeBg > a {
+        font-size: 9vw;
+        line-height: 1em;
     }
     
     .fb-comments iframe {
