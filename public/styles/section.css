@@ -27,16 +27,29 @@
     position: relative;
     top: 22vh;
 	
-	color: #aef9f1;
+	color: white;
 	font-family: Oswald;
-	font-size: 5em;
+    font-size: 6vw;
+}
+
+#bannerTitleThree {
+	width: 100%;
+    text-align: center;
+    position: relative;
+    top: 19vh;
+	
+	color: white;
+	font-family: Oswald;
+    font-size: 6vw;
 }
 
 
-
-
 #couple {
-	background-image: url(../images/couple.jpg);
+	
+}
+
+#someothercouple {
+    background-image: url(../images/couple.png);
 }
 
 #coupleTitle {
@@ -114,6 +127,7 @@
     font-family: Oswald;
     font-size: 3.6em;
     text-transform: uppercase;
+    line-height: 1em;
 }
 
 
@@ -150,7 +164,8 @@
 .bioTitle {
 	display: inline-block; 
 	margin-bottom: 5px;
-	
+    line-height: 1.1em;
+    
 	color: navy; 
 	font-family: Oswald;
 	font-size: 1.7em;
@@ -231,6 +246,7 @@
 	margin-bottom: 15px;
 	font-family: Oswald;
     font-size: 3.2em;
+    line-height: 1em;
     text-transform: uppercase;
 }
 
@@ -268,7 +284,10 @@
 	line-height: 1.25em;
 }
 
-
+.directionsText {
+    font-size: .7em;
+    text-decoration: none;
+}
 
 
 .registryContainer {
@@ -304,6 +323,22 @@
 	background-image: url(../images/targetbg.png);
 }
 
+#hiltonBg {
+    background-image: url(../images/hilton.jpg);
+}
+
+#doubleTreeBg {
+    background-image: url(../images/doubleTree.jpg);
+}
+
+#hiltonBg > a, #doubleTreeBg > a {
+    color: white;
+    font-size: 2vw;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, .3);
+}
+
 .fullwidthBg {
 	background-position: center center;
 	-webkit-background-size: cover;
@@ -324,4 +359,91 @@
 .fb-comments > span {
 	margin-top: 40px;
 	text-align: center;
+}
+
+@media screen and (max-width: 960px) {
+    .weddingpartyTitle {
+        font-size: 15vw;
+    }
+    
+    #bannerTitleOne {
+        font-size: 18vw;
+    }
+    
+    #bannerTitleTwo {
+        font-size: 10vw;
+    }
+    
+    #bannerTitleThree {
+        top: 20vh;
+        font-size: 10vw;
+    }
+    
+    #couplePicOne, #couplePicTwo {
+        float: none;
+        margin: 0 0 25px 0;
+        height: initial;
+    }
+    
+    .coupleParagraph > .verticalCenter {
+        position: static;
+        top: initial;
+        transform: none;
+    }
+    
+    .coupleParagraph {
+        height: initial;
+    }
+    
+    .coupleSubtitle > span {
+        font-size: 20vw;
+    }
+    
+    .bio {
+        width: 100%;
+        margin: 2% 0;
+    }
+    
+    .bioTitleContainer > .verticalCenter {
+        width: 50%;
+    }
+    
+    .bioTitleContainer > img {
+        vertical-align: top;
+    }
+    
+    #ceremony {
+        height: 100vh !important;
+    }
+    
+    #ceremonyTextContainer {
+        font-size: 1.9em;
+    }
+    
+    #ceremonyText {
+        border-radius: 0;
+        width: 100%;
+    }
+    
+    #scheduleGif {
+        height: initial;
+        width: 100%;
+    }
+    
+    .registryItem {
+        width: 100%;
+    }
+    
+    #amazonBg {
+        margin-bottom: 15px;
+    }
+    
+    #targetBg {
+        margin-top: 15px;
+    }
+    
+    .fb-comments iframe {
+        width: 100%;
+    }
+    
 }

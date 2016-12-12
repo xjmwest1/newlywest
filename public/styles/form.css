@@ -1,4 +1,10 @@
 
+#seahorse {
+    height: 15vw;
+    float: left;
+    padding-right: 30px;
+}
+
 #rsvpModal .modal-title {
 	text-align: center;
 }
@@ -41,4 +47,10 @@ form > .form-group {
 .btn-group-justified .btn .dropdown-menu,
 .btn-group-justified .btn-group .dropdown-menu {
 	left: auto; 
+}
+
+@media screen and (max-width: 960px) {
+    #seahorse {
+        height: 45vw;
+    }
 }
