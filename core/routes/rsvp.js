@@ -35,6 +35,10 @@ router.get('/:accept?', function(req, res, next) {
 router.post('/', function(req, res, next) {
   
   var rsvp = req.body;
+  Object.keys(rsvp).forEach((key) => {
+    rsvp[key] = rsvp[key].toLowerCase();
+  });
+
   rsvpRef.push(rsvp, (err) => {
     err ? res.status(500).json(err) : res.status(200).json(true);
   });
