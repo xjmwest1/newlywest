@@ -72,21 +72,16 @@
 					</button>
 					<h4 class="modal-title" id="myModalLabel">RSVP</h4>
 				</div>
-				<div class="modal-body">
-                    <div style="height: 25vh">
-                        <img id="seahorse" src="images/seahorse.png">
-                        <div class="verticalCenter text">Hold your seahorses! Check back when you get your invitation.</div>
-                    </div>
-                    
-                    
-					<!--<form id="nameForm">
+				<div class="modal-body">                    
+					<form id="nameForm">
 						<div id="rsvpNameGroup" class="form-group">
 							<label for="rsvpName">Your Name</label>
 							<input type="text" class="form-control" id="rsvpName" placeholder="John Doe">
 							<div class="form-control-feedback"></div>
 						</div>
 						<div class="form-group" style="text-align:center">
-							<div id="alreadyRsvp" style="display:none">You've already submitted your RSVP. To edit your response press continue</div>
+							<div id="alreadyRsvp" style="display:none">You've already submitted your RSVP.</div>
+							<div id="nameCheckError" style="display:none">We're having trouble connecting to the database, please try again later!</div>
 						</div>
 					</form>
 					<form id="detailsForm" style="display:none">						
@@ -94,24 +89,41 @@
 							<label>Can you make it?</label>
 							<div class="btn-group btn-group-justified" data-toggle="buttons">
 								<label id="rsvpAccept" class="btn btn-secondary" style="width:50%">
-									<input type="radio" name="options" onchange="rsvpAccept()" autocomplete="off" checked> Accept
+									<input type="radio" name="options" autocomplete="off" checked> Accept
 								</label>
 								<label id="rsvpReject" class="btn btn-secondary" style="width:50%">
-									<input type="radio" name="options" onchange="rsvpReject()" autocomplete="off"> Regret
+									<input type="radio" name="options" autocomplete="off"> Regret
 								</label>
 							</div>
 						</div>
-						
+
+						<div id="plusOneCheck" class="form-group" style="display:none">
+							<label>Do you have a plus one?</label>
+							<div class="btn-group btn-group-justified" data-toggle="buttons">
+								<label id="rsvpPlusOne" class="btn btn-secondary" style="width:50%">
+									<input type="radio" name="options" autocomplete="off" checked> Yes
+								</label>
+								<label id="rsvpNoPlusOne" class="btn btn-secondary" style="width:50%">
+									<input type="radio" name="options" autocomplete="off"> No
+								</label>
+							</div>
+						</div>
+
 						<div class="form-group" style="text-align:center">
 							<div id="acceptReject"></div>
 						</div>
 						
-					</form>-->
+					</form>
+
+					<div id="submitSuccessful" style="display:none">
+						<h3 style="text-align: center; padding-bottom: 2rem;"> Thanks for sanding this to us!</h3>
+						<img src="/images/sand_castle.png" style="width: 100%; max-width: 350px; margin: 0 auto; display: block;">
+					</div>
 				</div>
 				<div class="modal-footer">
-					<!--<button id="rsvpContinue" type="button" class="btn btn-primary" disabled onclick="showDetailsForm()">Continue</button>
+					<button id="rsvpContinue" type="button" class="btn btn-primary" disabled onclick="showDetailsForm()">Continue</button>
 					<button id="rsvpBack" type="button" class="btn btn-secondary" style="display:none" onclick="rsvpBack()">Back</button>
-					<button id="rsvpSubmit" type="button" class="btn btn-primary" style="display:none" disabled onclick="submitRsvp()">Submit</button>-->
+					<button id="rsvpSubmit" type="button" class="btn btn-primary" style="display:none" disabled>Submit</button>
 				</div>
 			</div>
 		</div>
@@ -519,7 +531,7 @@
 			$('#alreadyRsvp').hide();
 		
 			var inputName = $('#rsvpName').val();
-			var splitName = inputName.split(' ') || [];
+			var splitName = inputName.trim().split(' ') || [];
 			var validNames = true;
 			
 			if(!inputName || inputName.trim().length == 0) {
@@ -542,16 +554,19 @@
 				resetDetails();
 				$('#rsvpNameGroup > .form-control-feedback').empty();
 				$('#rsvpNameGroup').removeClass('has-warning');
-				$.get('/rsvp/first/' + splitName[0].toLowerCase() + '/last/' + splitName[1].toLowerCase(), function(response){
+				$.get('/rsvp/' + splitName[0].toLowerCase() + '/' + splitName[1].toLowerCase(), function(response){
 					//if already rsvp
-					$('#alreadyRsvp').show();
-					//else
-					console.log(response);
-					$('#rsvpContinue').prop('disabled', false);
+					if(response) {
+						$('#nameCheckError').hide();
+						$('#alreadyRsvp').show();
+						$('#rsvpContinue').prop('disabled', true);
+					}else {
+						$('#rsvpContinue').prop('disabled', false);
+					}
 				}).fail(function() {
-					$('#alreadyRsvp').show();
-					console.log('whoops');
-					$('#rsvpContinue').prop('disabled', false);
+					$('#nameCheckError').show();
+					$('#alreadyRsvp').hide();
+					$('#rsvpContinue').prop('disabled', true);
 				});
 			}
 		}, 500);
@@ -570,6 +585,8 @@
 			$('#rsvpBack').hide();
 			
 			$('#alreadyRsvp').hide();
+
+			$('#submitSuccessful').hide();
 			
 			resetDetails();
 		}
@@ -586,6 +603,14 @@
 			
 			$('#rsvpReject').removeClass('active');
 			$('#rsvpReject > input').prop('checked', false);
+
+			$('#rsvpPlusOne').removeClass('active');
+			$('#rsvpPlusOne > input').prop('checked', false);
+
+			$('#rsvpNoPlusOne').removeClass('active');
+			$('#rsvpNoPlusOne > input').prop('checked', false);
+
+			$('#plusOneCheck').hide();
 		}
 		
 		function showDetailsForm() {
@@ -603,13 +628,53 @@
 			$('#rsvpSubmit').hide();
 			$('#rsvpBack').hide();
 		}
-		
+
+		var form = {
+			accept: false,
+			name: null,
+			plusOne: null
+		};
+
 		$('#rsvpAccept').click(function() {
-			$('#acceptReject').text($('#rsvpName').val() + ' will be attending on May 13th, 2017 at 5:30 PM');
+			$('#plusOneCheck').show();
+			$('#rsvpPlusOne').removeClass('active');
+			$('#rsvpPlusOne > input').prop('checked', false);
+			$('#rsvpNoPlusOne').removeClass('active');
+			$('#rsvpNoPlusOne > input').prop('checked', false);
+			$('#acceptReject').empty();
+			$('#rsvpSubmit').prop('disabled', true);
+			form.accept = true;
 		});
 		
 		$('#rsvpReject').click(function() {
 			$('#acceptReject').text($('#rsvpName').val() + ' will not be able to attend');
+			form.accept = false;
+			$('#rsvpSubmit').prop('disabled', false);
+			$('#plusOneCheck').hide();
+		});
+
+		$('#rsvpPlusOne').click(function() {
+			$('#acceptReject').text($('#rsvpName').val() + ' and plus one will be attending on May 13th, 2017 at 5:30 PM');
+			form.plusOne = true;
+			$('#rsvpSubmit').prop('disabled', false);
+		});
+		
+		$('#rsvpNoPlusOne').click(function() {
+			$('#acceptReject').text($('#rsvpName').val() + ' will be attending on May 13th, 2017 at 5:30 PM');
+			form.plusOne = false;
+			$('#rsvpSubmit').prop('disabled', false);
+		});
+
+		$('#rsvpSubmit').click(function() {
+			form.name = $('#rsvpName').val();
+			$.post('/rsvp', form, (success) => {
+				if(success === true) {
+					$('#detailsForm').hide(); 
+					$('#rsvpBack').hide(); 
+					$('#rsvpSubmit').hide();
+					$('#submitSuccessful').show();
+				}
+			});
 		});
 	
 		// Facebook comment section setup

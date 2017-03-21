@@ -1,4 +1,5 @@
 var mongodb = require('./mongo');
+var firebase = require('../repositories/firebase');
 var COLLECTION = 'rsvp';
 
 var functions = {
@@ -43,12 +44,15 @@ function deleteRsvp(id) {
 }
 
 function findRsvpByName(firstname, lastname) {
-  
-   return mongodb.then(function(db) {  
-    return db.collection(COLLECTION).findOne({first: firstname, last: lastname}).then(function(result) {
-      return result;
-    }, function(err) {
-      return err;
+
+  return new Promise(function(resolve, reject) {
+    firebase.database().ref('/rsvp').on('child_added', function(snapshot) {
+      console.log(snapshot.val());
+    });
+
+
+    firebase.database().ref('/rsvp').orderByChild('name').equalTo(firstname + ' ' + lastname).limitToFirst(1).on('child_added', function(snapshot) {
+      resolve(snapshot.val());
     });
   });
 
@@ -65,7 +69,7 @@ function findRsvpsByLastName(lastname) {
     });
   });*/
   
-  return mongodb.then(function(db) {  
+  /*return mongodb.then(function(db) {  
     return new Promise(function(resolve, reject) {
       db.collection(COLLECTION).find({last: {$regex: lastname} }).toArray(function(err, items) {
         if(err) {
@@ -75,7 +79,7 @@ function findRsvpsByLastName(lastname) {
         }
       });
     });
-  });
+  });*/
 
 }
 
